@@ -36,8 +36,8 @@ class LinkedList {
     let pre = this.head;
 
     while (temp.next) {
-      let pre = temp;
-      let temp = temp.next;
+      pre = temp;
+      temp = temp.next;
     }
 
     this.tail = pre;
@@ -52,16 +52,64 @@ class LinkedList {
     return temp;
   }
 
-  unshift() {
+  unshift(value) {
     const newHead = new Node(value);
     if (this.length === 0) {
-      this.head = node;
-      this.tail = node;
-    } else {
-      newHead.next = this.head; // Direct assignment
       this.head = newHead;
+      this.tail = newHead;
+    } else {
+      let currentHead = this.head;
+      this.head = newHead;
+      this.head.next = currentHead;
     }
     this.length++;
     return this;
+  }
+
+  shift() {
+    if (this.length === 0) return undefined;
+
+    let currentHead = this.head;
+
+    if (this.length === 1) {
+      this.head = null;
+      this.tail = null;
+    } else {
+      this.head = currentHead.next;
+      currentHead.next = null;
+    }
+
+    this.length--;
+
+    return currentHead;
+  }
+
+  find(value) {
+    if (this.length === 0) {
+      return undefined;
+    }
+
+    let temp = this.head;
+    while (temp) {
+      if (temp.value === value) {
+        return temp;
+      }
+      temp = temp.next;
+    }
+    return undefined;
+  }
+
+  get(findIndex) {
+    if (findIndex < 0 || findIndex >= this.length) {
+      return undefined;
+    }
+
+    let temp = this.head;
+
+    for (let i = 0; i < findIndex; i++) {
+      temp = temp.next;
+    }
+
+    return temp;
   }
 }
