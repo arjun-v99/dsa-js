@@ -100,10 +100,12 @@ class LinkedList {
   }
 
   get(findIndex) {
+    // our LL starts at 0 so we dont want anything less than 0. since it's starts at 0 the last index will always be findIndex-1.
     if (findIndex < 0 || findIndex >= this.length) {
       return undefined;
     }
 
+    // to move through our lists.
     let temp = this.head;
 
     for (let i = 0; i < findIndex; i++) {
