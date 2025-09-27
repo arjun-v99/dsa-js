@@ -51,4 +51,18 @@ class LinkedList {
 
     return temp;
   }
+
+  unshift() {
+    const newHead = new Node(value);
+    if (this.length === 0) {
+      this.head = node;
+      this.tail = node;
+    } else {
+      let currentHead = this.head;
+      this.head = newHead;
+      this.head.next = currentHead;
+    }
+    this.length++;
+    return this;
+  }
 }
