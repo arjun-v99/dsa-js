@@ -58,9 +58,8 @@ class LinkedList {
       this.head = node;
       this.tail = node;
     } else {
-      let currentHead = this.head;
+      newHead.next = this.head; // Direct assignment
       this.head = newHead;
-      this.head.next = currentHead;
     }
     this.length++;
     return this;
